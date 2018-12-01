@@ -24,7 +24,7 @@ for file_path in file_list:
       if count > 1:
         # Parse line and extract date
         words = line.strip().split()
-        line_date = words[0] + "-" + words[1] + "-" + words[2]
+        line_date = words[0] + words[1] + words[2]
 
         # If line represents new date, 
         # reset fog_count counter and
@@ -34,7 +34,7 @@ for file_path in file_list:
           # lines
           if line_date != '':
             fog_count = 0      
-            fog_labels[line_date] = False
+            fog_labels[line_date] = 0
 
         # Fetch temperature and dew point to
         # calculate if fog forming
@@ -52,7 +52,7 @@ for file_path in file_list:
           if fog_count > 5:
             # If sustained fog present, indicated
             # there was fog on that day
-            fog_labels[line_date] = True
+            fog_labels[line_date] = 1
 
         # Update date tracker to
         # pick up new dates
@@ -60,7 +60,7 @@ for file_path in file_list:
 
 # Build count of total foggy days by month
 for key, value in fog_labels.items():
-  month = key.split('-')[1]
+  month = key[4:6]
   if month not in fog_month_labels:
     fog_month_labels[month] = 0
   if value == True:

@@ -43,12 +43,12 @@ open(sanjose_data, 'w+') as sanjose, open(hayward_data, 'w+') as hayward:
         # Exclude uncomplete rows
         if row[7] != '':
           # Write row with selected columns
-          hw_writer.writerow([row[2], row[3], row[4], row[5], row[6].strip(), row[7]])
+          hw_writer.writerow(["".join(row[2].split("-")), row[3], row[4], row[5], row[6].strip(), row[7]])
       # Livermore
       elif row[0] == 'USW00023285':
         if row[7] != '':
-          lm_writer.writerow([row[2], row[3], row[4], row[5], row[6].strip(), row[7]])
+          lm_writer.writerow(["".join(row[2].split("-")), row[3], row[4], row[5], row[6].strip(), row[7]])
       # San Jose
       elif row[0] == 'USW00023293':
         if row[7] != '':
-          sj_writer.writerow([row[2], row[3], row[4], row[5], row[6].strip(), row[7]])
+          sj_writer.writerow(["".join(row[2].split("-")), row[3], row[4], row[5], row[6].strip(), row[7]])
